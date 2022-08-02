@@ -7,7 +7,7 @@ run_test() {
 
   diff \
     ${test_case}/expected.txt \
-    <(bash ${test_case}/generate-fixture.sh | cnt -no-progress)
+    <(bash ${test_case}/generate-fixture.sh | cnt --no-progress)
 
   if [ $? -eq 0 ]; then
     echo -e "$test_case:\tPASSED"
