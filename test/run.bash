@@ -1,3 +1,5 @@
+source ../built/count.sh
+
 count_failed=0
 
 run_test() {

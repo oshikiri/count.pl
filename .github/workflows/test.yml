@@ -24,7 +24,5 @@ jobs:
 
     - name: Run tests
       run: |
-        source built/count.sh
-
         cd test
         bash run.bash
