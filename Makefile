@@ -7,7 +7,7 @@ count.sh: count.min.pl
 	echo \
 		"function cnt() {\n  perl -e '" \
 		$$(sed -e 's/\\/\\\\/g' < built/count.min.pl) \
-		"'\n}" \
+		"' -- \"\$$@\" \n}" \
 		> built/count.sh
 
 count.min.pl:

@@ -1,14 +1,25 @@
 use strict;
 use warnings;
 
-my %counts = ();
-my $total  = 0;
+my $topk        = 10;
+my %counts      = ();
+my $total       = 0;
+my $last_update = time();
+my $no_progress = grep( /^--no-progress$/, @ARGV );
 
-sub showTopItems {
+sub showTopk {
     my @sorted = sort { $counts{$b} <=> $counts{$a} } keys %counts;
-    foreach my $key ( splice @sorted, 0, 10 ) {
+    foreach my $key ( splice @sorted, 0, $topk ) {
         print "$key: $counts{$key}\n";
     }
+}
+
+sub clear_console {
+    print "\033[2J";
+}
+
+sub up {
+    print "\e[${topk}A";
 }
 
 while (<STDIN>) {
@@ -16,11 +27,16 @@ while (<STDIN>) {
     $total++;
     $counts{$_}++;
 
-    if ( $total % 1000000 == 0 ) {
-        print "\033[2J";    # clear console
-        print "\e[10A";     # up 10
-        &showTopItems();
+    if ( !$no_progress && time() - $last_update > 0.5 ) {
+        $last_update = time();
+
+        &clear_console();
+        &up();
+        &showTopk();
     }
 }
 
-&showTopItems();
+if ( !$no_progress ) {
+    &clear_console();
+}
+&showTopk();
