@@ -20,6 +20,7 @@ jobs:
     - name: Build
       run: |
         perl -v
+        cpanm Perl::Tidy
         make
 
     - name: Run minimal test
