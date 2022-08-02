@@ -12,6 +12,9 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
+    container:
+      image: perl:5.32
+
     steps:
 
     - name: Check out
