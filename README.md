@@ -9,7 +9,7 @@ Load `cnt` function
 
 ```bash
 function cnt() {
-  perl -e ' use strict;use warnings;my%counts=();my$total=0;sub showTopItems{print"\033[2J";print"\e[10A";my@sorted=sort{$counts{$b}<=>$counts{$a}}keys%counts;foreach my $key(splice@sorted,0,10){print"$key: $counts{$key}\n";}}while(<STDIN>){chomp;$total++;$counts{$_}++;if($total%1000000==0){&showTopItems();}}&showTopItems(); '
+  perl -e ' use strict;use warnings;my$topk=10;my$no_progress=grep(/^--no-progress$/,@ARGV);my%counts=();my$total=0;my$last_update=time();sub showTopk{my@sorted=sort{$counts{$b}<=>$counts{$a}}keys%counts;foreach my $key(splice@sorted,0,$topk){print"$key: $counts{$key}\n";}}sub clear_console{print"\033[2J";}sub up{print"\e[${topk}A";}while(<STDIN>){chomp;$total++;$counts{$_}++;if(!$no_progress&&time()-$last_update>0.5){$last_update=time();&clear_console();&up();&showTopk();}}if(!$no_progress){&clear_console();}&showTopk(); ' -- "$@"
 }
 ```
 
