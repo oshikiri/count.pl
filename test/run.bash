@@ -1,4 +1,4 @@
-source ../built/count.sh
+source ../built/install.sh
 
 count_failed=0
 
