@@ -16,7 +16,6 @@ jobs:
       image: perl:5.32
 
     steps:
-
     - name: Check out
       uses: actions/checkout@v2
 
@@ -26,12 +25,6 @@ jobs:
         cpanm --notest Perl::Tidy
         perltidy --version
         make
-
-    - name: Run minimal test
-      shell: bash
-      run: |
-        source built/count.sh
-        echo -e 'a\nb\na' | cnt
 
     - name: Run tests
       shell: bash
