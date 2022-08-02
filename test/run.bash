@@ -18,3 +18,11 @@ run_test() {
 }
 
 run_test one-to-ten
+
+if [ $count_failed -eq 0 ]; then
+  echo "All tests passed"
+  exit 0
+else
+  echo "${count_failed} failed cases"
+  exit 1
+fi
