@@ -17,6 +17,7 @@ run_test() {
   fi
 }
 
+run_test minimal
 run_test one-to-ten
 
 if [ $count_failed -eq 0 ]; then
