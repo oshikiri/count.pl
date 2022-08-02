@@ -1,14 +1,14 @@
-all: count.sh
+all: install.sh
 
 clean:
 	rm -r built
 
-count.sh: count.min.pl
+install.sh: count.min.pl
 	echo \
 		"function cnt() {\n  perl -e '" \
 		$$(sed -e 's/\\/\\\\/g' < built/count.min.pl) \
 		"' -- \"\$$@\" \n}" \
-		> built/count.sh
+		> built/install.sh
 
 count.min.pl:
 	mkdir -p built/
