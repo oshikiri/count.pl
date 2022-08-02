@@ -1,0 +1,30 @@
+name: test
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Check out
+      uses: actions/checkout@v1
+
+    - name: Build
+      run: |
+        perl -v
+        make
+
+    - name: Run tests
+      run: |
+        source built/count.sh
+
+        cd test
+        bash run.bash
