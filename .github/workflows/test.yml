@@ -28,11 +28,13 @@ jobs:
         make
 
     - name: Run minimal test
+      shell: bash
       run: |
         source built/count.sh
         echo -e 'a\nb\na' | cnt
 
     - name: Run tests
+      shell: bash
       run: |
         cd test
         bash run.bash
