@@ -5,6 +5,7 @@ my $topk        = 10;
 my %counts      = ();
 my $total       = 0;
 my $last_update = time();
+my $no_progress = 1;
 
 sub showTopk {
     my @sorted = sort { $counts{$b} <=> $counts{$a} } keys %counts;
@@ -26,7 +27,7 @@ while (<STDIN>) {
     $total++;
     $counts{$_}++;
 
-    if ( time() - $last_update > 0.5 ) {
+    if ( !$no_progress && time() - $last_update > 0.5 ) {
         $last_update = time();
 
         &clear_console();
@@ -35,5 +36,7 @@ while (<STDIN>) {
     }
 }
 
-&clear_console();
+if ( !$no_progress ) {
+    &clear_console();
+}
 &showTopk();
