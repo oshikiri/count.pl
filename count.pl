@@ -5,7 +5,7 @@ my $topk        = 10;
 my %counts      = ();
 my $total       = 0;
 my $last_update = time();
-my $no_progress = 1;
+my $no_progress = grep( /^--no-progress$/, @ARGV );
 
 sub showTopk {
     my @sorted = sort { $counts{$b} <=> $counts{$a} } keys %counts;
