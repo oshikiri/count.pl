@@ -29,10 +29,7 @@ jobs:
 
     - name: Run minimal test
       run: |
-        function cnt() {
-          perl -e ' use strict;use warnings;my%counts=();my$total=0;sub showTopItems{my@sorted=sort{$counts{$b}<=>$counts{$a}}keys%counts;foreach my $key(splice@sorted,0,10){print"$key: $counts{$key}\n";}}while(<STDIN>){chomp;$total++;$counts{$_}++;if($total%1000000==0){print"\033[2J";print"\e[10A";&showTopItems();}}&showTopItems(); '
-        }
-        # source built/count.sh
+        source built/count.sh
         echo -e 'a\nb\na' | cnt
 
     - name: Run tests
