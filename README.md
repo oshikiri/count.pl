@@ -1,6 +1,8 @@
 count.pl
 =====
 
+[![Build Status](https://github.com/oshikiri/count.pl/workflows/test/badge.svg)](https://github.com/oshikiri/count.pl/actions?query=workflow%3Atest)
+
 ## How to use
 
 Load `cnt` function

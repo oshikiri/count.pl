@@ -1,0 +1,33 @@
+name: test
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    container:
+      image: perl:5.30
+
+    steps:
+    - name: Check out
+      uses: actions/checkout@v2
+
+    - name: Build
+      run: |
+        perl -v
+        cpanm --notest Perl::Tidy
+        perltidy --version
+        make
+
+    - name: Run tests
+      shell: bash
+      run: |
+        cd test
+        bash run.bash
