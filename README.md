@@ -1,7 +1,12 @@
 count.pl
 =====
 
-[![Build Status](https://github.com/oshikiri/count.pl/workflows/test/badge.svg)](https://github.com/oshikiri/count.pl/actions?query=workflow%3Atest)
+<a href="https://github.com/oshikiri/count.pl/actions?query=workflow%3Atest">
+  <img
+    src="https://github.com/oshikiri/count.pl/workflows/test/badge.svg"
+    alt="Build Status"
+  >
+</a>
 
 ## How to use
 
@@ -13,20 +18,20 @@ function cnt() {
 }
 ```
 
-and redirect newline-separeted data into `cnt`
+and redirect newline-separeted data into `cnt`.
 
-```
+```sh
 echo -e 'a\nb\na\nb' | cnt
 ```
 
-show counts
+It will show counts.
+
 ```
 a: 2
 b: 2
 ```
 
-## Development
-### Requirements
+## Requirements
 
 - Perl v5.30.0 (?)
 
@@ -35,6 +40,12 @@ b: 2
 cpanm Perl::Tidy
 ```
 
+## Development
+
+```sh
+# Format count.pl
+make format
+```
 
 
 ## Reference
