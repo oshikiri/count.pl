@@ -35,6 +35,7 @@ sub print_sorted {
         $n = keys %counts;
     }
 
+    # NOTE: This line may be inefficient if $n << keys %counts
     my @sorted = sort { $counts{$b} <=> $counts{$a} } keys %counts;
 
     my $result = "";
