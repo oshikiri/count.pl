@@ -34,14 +34,19 @@ sub print_sorted {
     if ( $n == -1 ) {
         $n = keys %counts;
     }
+
     my @sorted = sort { $counts{$b} <=> $counts{$a} } keys %counts;
+
+    my $result = "";
     foreach my $key ( splice @sorted, 0, $n ) {
-        if ($stderr) {
-            print STDERR "$key: $counts{$key}\n";
-        }
-        else {
-            print STDOUT "$key: $counts{$key}\n";
-        }
+        $result .= "$key: $counts{$key}\n";
+    }
+
+    if ($stderr) {
+        print STDERR $result;
+    }
+    else {
+        print STDOUT $result;
     }
 }
 
