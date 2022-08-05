@@ -64,7 +64,12 @@ while (<STDIN>) {
         $last_update = $current_time;
 
         &clear_console();
-        &up($topk);
+        my $n           = $topk;
+        my $counts_size = keys %counts;
+        if ( $counts_size < $n ) {
+            $n = $counts_size;
+        }
+        &up($n);
         &print_sorted( $topk, 1 );
     }
 }
