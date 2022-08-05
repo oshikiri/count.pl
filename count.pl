@@ -59,8 +59,9 @@ while (<STDIN>) {
     $total++;
     $counts{$_}++;
 
-    if ( $show_progress && time() - $last_update > $reflesh_interval ) {
-        $last_update = time();
+    my $current_time = time();
+    if ( $show_progress && $current_time - $last_update > $reflesh_interval ) {
+        $last_update = $current_time;
 
         &clear_console();
         &up($topk);
