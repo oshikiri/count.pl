@@ -29,23 +29,29 @@ my $total       = 0;
 my $last_update = time();
 
 sub print_sorted {
-    my $n = $_[0];
+    my $n      = $_[0];
+    my $stderr = $_[1];
     if ( $n == -1 ) {
         $n = keys %counts;
     }
     my @sorted = sort { $counts{$b} <=> $counts{$a} } keys %counts;
     foreach my $key ( splice @sorted, 0, $n ) {
-        print "$key: $counts{$key}\n";
+        if ($stderr) {
+            print STDERR "$key: $counts{$key}\n";
+        }
+        else {
+            print STDOUT "$key: $counts{$key}\n";
+        }
     }
 }
 
 sub clear_console {
-    print "\033[2J";
+    print STDERR "\033[2J";
 }
 
 sub up {
     my $n = $_[0];
-    print "\e[${n}A";
+    print STDERR "\e[${n}A";
 }
 
 while (<STDIN>) {
@@ -58,11 +64,11 @@ while (<STDIN>) {
 
         &clear_console();
         &up($topk);
-        &print_sorted($topk);
+        &print_sorted( $topk, 1 );
     }
 }
 
 if ($show_progress) {
     &clear_console();
 }
-&print_sorted(-1);
+&print_sorted( -1, 0 );
