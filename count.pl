@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 
 use strict;
-use warnings 'FATAL';
+use warnings FATAL => 'all';
 
 my $topk             = 10;
 my $show_progress    = 1;
