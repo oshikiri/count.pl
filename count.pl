@@ -23,7 +23,6 @@ foreach my $arg (@ARGV) {
 }
 
 my %counts      = ();
-my $total       = 0;
 my $last_update = time();
 
 sub print_sorted {
@@ -60,7 +59,6 @@ sub up {
 
 while (<STDIN>) {
     chomp;
-    $total++;
     $counts{$_}++;
 
     my $current_time = time();
