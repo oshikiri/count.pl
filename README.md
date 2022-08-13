@@ -8,6 +8,13 @@ count.pl
   >
 </a>
 
+![counting many random numbers](./img/random.mp4')
+
+
+```bash
+while true; do echo $(($RANDOM%10)); done | cnt
+```
+
 ## How to use
 
 Load `cnt` function
