@@ -8,12 +8,8 @@ count.pl
   >
 </a>
 
-![counting many random numbers](./img/random.mp4')
+![while true; do echo $(($RANDOM%10)); done | cnt](./img/random.gif)
 
-
-```bash
-while true; do echo $(($RANDOM%10)); done | cnt
-```
 
 ## How to use
 
