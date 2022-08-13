@@ -10,7 +10,7 @@ my $reflesh_interval = 0.5;
 foreach my $arg (@ARGV) {
     if ( $arg =~ /^-(\d+)$/ ) {
         $topk = $1;
-        if ( $topk = 0 ) {
+        if ( $topk == 0 ) {
             $show_progress = 0;
         }
         next;
