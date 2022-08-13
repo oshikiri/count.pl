@@ -7,6 +7,7 @@ use List::Util qw/min/;
 my $topk             = 10;
 my $show_progress    = 1;
 my $reflesh_interval = 0.5;
+my $clear_console    = "\033[2J";
 
 foreach my $arg (@ARGV) {
     if ( $arg =~ /^-(\d+)$/ ) {
@@ -49,15 +50,6 @@ sub print_sorted {
     }
 }
 
-sub clear_console {
-    print STDERR "\033[2J";
-}
-
-sub up {
-    my $n = $_[0];
-    print STDERR "\e[${n}A";
-}
-
 while (<STDIN>) {
     chomp;
     $counts{$_}++;
@@ -65,16 +57,14 @@ while (<STDIN>) {
     my $current_time = time();
     if ( $show_progress && $current_time - $last_update > $reflesh_interval ) {
         $last_update = $current_time;
-
-        &clear_console();
-        my $counts_size = keys %counts;
-        my $n           = min( ( $topk, $counts_size ) );
-        &up($n);
+        my $n = min( ( $topk, scalar keys %counts ) );
+        print STDERR $clear_console;
+        print STDERR "\e[${n}A";    # up n lines
         &print_sorted( $topk, 1 );
     }
 }
 
 if ($show_progress) {
-    &clear_console();
+    print STDERR $clear_console;
 }
 &print_sorted( -1, 0 );
