@@ -28,8 +28,8 @@ my %counts      = ();
 my $last_update = time();
 
 sub print_sorted {
-    my $n      = $_[0];
-    my $stderr = $_[1];
+    my $n          = $_[0];
+    my $use_stderr = $_[1];
     if ( $n == -1 ) {
         $n = keys %counts;
     }
@@ -42,7 +42,7 @@ sub print_sorted {
         $result .= "$key: $counts{$key}\n";
     }
 
-    if ($stderr) {
+    if ($use_stderr) {
         print STDERR $result;
     }
     else {
