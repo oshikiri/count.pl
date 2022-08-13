@@ -13,7 +13,7 @@ count.pl
 
 ## How to use
 
-Load `cnt` function
+Load `cnt` function to your shell
 
 ```sh
 cnt() {
@@ -21,29 +21,27 @@ cnt() {
 }
 ```
 
-and redirect newline-separeted data into `cnt`.
+It counts newline-separated data and then shows counting results like below.
 
 ```sh
 echo -e 'a\nb\na\nb' | cnt
 ```
-
-It will show counts.
-
 ```
-a: 2
 b: 2
+a: 2
 ```
+
 
 ## Requirements
 
 - Perl v5.30.0 (?)
 
+### Code-format
+
 ```sh
 # For development
 cpanm Perl::Tidy
 ```
-
-## Development
 
 ```sh
 # Format count.pl
