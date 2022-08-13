@@ -21,9 +21,7 @@ my %counts      = ();
 my $last_update = time();
 
 sub generate_sorted_result {
-    my $n = $_[0] < 0 ? scalar keys %counts : $_[0];
-
-    # NOTE: This line may be inefficient if $n << keys %counts
+    my $n      = $_[0] < 0 ? scalar keys %counts : $_[0];
     my @sorted = sort { $counts{$b} <=> $counts{$a} } keys %counts;
     my $result = "";
     foreach my $key ( splice @sorted, 0, $n ) {
