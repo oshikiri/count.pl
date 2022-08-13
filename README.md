@@ -8,6 +8,9 @@ count.pl
   >
 </a>
 
+![while true; do echo $(($RANDOM%10)); done | cnt](./img/random.gif)
+
+
 ## How to use
 
 Load `cnt` function
