@@ -1,7 +1,8 @@
 #!/usr/bin/perl
 
 use strict;
-use warnings FATAL => 'all';
+use warnings;
+use List::Util qw/min/;
 
 my $topk             = 10;
 my $show_progress    = 1;
@@ -66,11 +67,8 @@ while (<STDIN>) {
         $last_update = $current_time;
 
         &clear_console();
-        my $n           = $topk;
         my $counts_size = keys %counts;
-        if ( $counts_size < $n ) {
-            $n = $counts_size;
-        }
+        my $n           = min( ( $topk, $counts_size ) );
         &up($n);
         &print_sorted( $topk, 1 );
     }
