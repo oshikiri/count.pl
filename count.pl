@@ -17,8 +17,8 @@ foreach my $arg (@ARGV) {
     }
 }
 
-my %counts      = ();
-my $last_update = time();
+my %counts         = ();
+my $last_refleshed = time();
 
 sub generate_sorted_result {
     my $n      = $_[0] < 0 ? scalar keys %counts : $_[0];
@@ -33,9 +33,9 @@ sub generate_sorted_result {
 while (<STDIN>) {
     chomp;
     $counts{$_}++;
-    my $current_time = time();
-    if ( $show_progress && $current_time - $last_update > $reflesh_interval ) {
-        $last_update = $current_time;
+    my $current = time();
+    if ( $show_progress && $current - $last_refleshed > $reflesh_interval ) {
+        $last_refleshed = $current;
         my $n = min( ( $topk, scalar keys %counts ) );
         print STDERR $clear_console;
         print STDERR "\e[${n}A";    # up n lines
