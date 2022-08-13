@@ -17,11 +17,6 @@ foreach my $arg (@ARGV) {
         }
         next;
     }
-
-    if ( $arg =~ /^-t=(\d(?:\.\d)?)$/ ) {
-        $reflesh_interval = $1;
-        next;
-    }
 }
 
 my %counts      = ();
