@@ -28,11 +28,8 @@ my %counts      = ();
 my $last_update = time();
 
 sub print_sorted {
-    my $n          = $_[0];
+    my $n          = $_[0] < 0 ? scalar keys %counts : $_[0];
     my $use_stderr = $_[1];
-    if ( $n == -1 ) {
-        $n = keys %counts;
-    }
 
     # NOTE: This line may be inefficient if $n << keys %counts
     my @sorted = sort { $counts{$b} <=> $counts{$a} } keys %counts;
