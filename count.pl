@@ -8,6 +8,8 @@ my $topk             = 10;
 my $show_progress    = 1;
 my $reflesh_interval = 0.5;
 my $clear_console    = "\033[2J";
+my %counts           = ();
+my $last_refleshed   = 0;
 
 foreach my $arg (@ARGV) {
     if ( $arg =~ /^-(\d+)$/ ) {
@@ -16,9 +18,6 @@ foreach my $arg (@ARGV) {
         next;
     }
 }
-
-my %counts         = ();
-my $last_refleshed = time();
 
 sub generate_sorted_result {
     my $n      = $_[0] < 0 ? scalar keys %counts : $_[0];
