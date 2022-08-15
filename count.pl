@@ -19,7 +19,7 @@ foreach my $arg (@ARGV) {
     }
 }
 
-sub generate_sorted_result {
+sub create_progress_report {
     my $n      = @_ == 1 ? $_[0] : keys %counts;
     my @sorted = sort { $counts{$b} <=> $counts{$a} } keys %counts;
     my $result;
@@ -36,11 +36,11 @@ while (<STDIN>) {
     if ( $show_progress && $current - $last_refleshed > $reflesh_interval ) {
         $last_refleshed = $current;
         my $n = min( ( $k, scalar keys %counts ) );
-        print STDERR $clear_console . &generate_sorted_result($n);
+        print STDERR $clear_console . &create_progress_report($n);
     }
 }
 
 if ($show_progress) {
     print STDERR $clear_console;
 }
-print STDOUT &generate_sorted_result;
+print STDOUT &create_progress_report;
