@@ -36,8 +36,7 @@ while (<STDIN>) {
     if ( $show_progress && $current - $last_refleshed > $reflesh_interval ) {
         $last_refleshed = $current;
         my $n = min( ( $topk, scalar keys %counts ) );
-        print STDERR $clear_console;
-        print STDERR &generate_sorted_result($topk);
+        print STDERR $clear_console . &generate_sorted_result($n);
     }
 }
 
