@@ -37,7 +37,6 @@ while (<STDIN>) {
         $last_refleshed = $current;
         my $n = min( ( $topk, scalar keys %counts ) );
         print STDERR $clear_console;
-        print STDERR "\e[${n}A";    # up n lines
         print STDERR &generate_sorted_result($topk);
     }
 }
