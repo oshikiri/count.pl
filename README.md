@@ -48,6 +48,15 @@ cpanm Perl::Tidy
 make format
 ```
 
+### Profiling
+
+```sh
+cpanm Devel::NYTProf
+
+cat data | perl -d:NYTProf count.pl
+nytprofhtml nytprof.out
+```
+
 
 ## Reference
 
